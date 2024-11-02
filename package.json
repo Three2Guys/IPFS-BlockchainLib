@@ -1,0 +1,33 @@
+{
+  "name": "my-ipfs-library",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "truffle test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "truffle migrate --network development"
+  },
+  "dependencies": {
+    "ethers": "^5.4.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
+  "devDependencies": {
+    "truffle": "^5.4.0",
+    "mocha": "^8.4.0",
+    "chai": "^4.3.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
