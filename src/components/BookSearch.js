@@ -20,7 +20,7 @@ const BookSearch = ({ contractAddress }) => {
             uploader: bookData[3],
         });
     };
-    
+    //
 
     return (
         <div>
