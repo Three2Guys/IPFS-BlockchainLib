@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "test": "truffle test",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "deploy": "truffle migrate --network development"
   },
   "dependencies": {
