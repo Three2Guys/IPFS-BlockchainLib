@@ -18,6 +18,15 @@ const BookUpload = ({ contractAddress }) => {
           await window.ethereum.request({ method: 'eth_requestAccounts' });
           const newProvider = new ethers.providers.Web3Provider(window.ethereum);
           setProvider(newProvider);
+
+          const { chainId } = await newProvider.getNetwork();
+          const expectedChainId = 31337;
+          if (chainId !== expectedChainId) {
+            alert(`请切换到正确的网络: Anvil Localhost (Chain ID: ${expectedChainId})`);
+            console.error(`Connected to wrong network (Chain ID: ${chainId})`);
+            return; // 停止执行
+          }
+
           const signer = newProvider.getSigner();
           const newContract = new ethers.Contract(contractAddress, Library.abi, signer);
           setContract(newContract);
@@ -100,6 +109,7 @@ const BookUpload = ({ contractAddress }) => {
           <p>File uploaded successfully!</p>
           <p>
             CID: <a href={`https://ipfs.io/ipfs/${cid}`} target="_blank" rel="noopener noreferrer">{cid}</a>
+            Link: <a href={`https://ipfs.io/ipfs/${cid}`} target="_blank" rel="noopener noreferrer">https://ipfs.io/ipfs/${cid}</a>
           </p>
         </div>
       )}

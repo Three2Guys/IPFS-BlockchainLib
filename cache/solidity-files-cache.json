@@ -1,0 +1,77 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/liurunsheng/Desktop/Course/COMP4651/project/my-ipfs-library/contracts/Library.sol": {
+      "lastModificationDate": 1730549394041,
+      "contentHash": "1df715c2f0f3296da032540979c63619",
+      "sourceName": "contracts/Library.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Library"
+      ]
+    },
+    "/Users/liurunsheng/Desktop/Course/COMP4651/project/my-ipfs-library/contracts/Lock.sol": {
+      "lastModificationDate": 1730814012994,
+      "contentHash": "101c00cb43bd6d4be9704e08c973d5ad",
+      "sourceName": "contracts/Lock.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
+        "Lock"
+      ]
+    }
+  }
+}
