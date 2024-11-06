@@ -5,7 +5,8 @@ import ErrorBoundary from "./components/ErrorBoundary"; // Importing the error b
 
 const App = () => {
   // Replace with your deployed contract address
-  const contractAddress = "0x1566481C4b58103AB8f86bFc544FcD034bEa79D4"; 
+  // const contractAddress = "0x1566481C4b58103AB8f86bFc544FcD034bEa79D4"; 
+  const contractAddress = "0xfc093904d5Af380b8d439b05ae5932a58C76A428"; 
 
   return (
     <ErrorBoundary>

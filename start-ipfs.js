@@ -24,7 +24,10 @@ ipfsDaemon.stdout.on('data', (data) => {
   console.log(`IPFS: ${data}`);
   if (data.toString().includes('API server listening on')) {
     console.log('IPFS daemon started successfully.');
-    spawn('npm', ['start'], { stdio: 'inherit' });
+    // spawn('npm', ['start'], { stdio: 'inherit' });
+    setTimeout(() => {
+      spawn('npm', ['start'], { stdio: 'inherit' });
+    }, 2000);
   }
 });
 
