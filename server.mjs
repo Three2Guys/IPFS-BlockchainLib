@@ -113,22 +113,32 @@ async function startServer() {
   app.delete("/delete-book/:bookId", async (req, res) => {
     try {
       const bookId = req.params.bookId;
-      const orbitdb = req.app.locals.orbitdb;
-      const db = await orbitdb.keyvalue("books");
+      const { uploaderAddress } = req.body; // get uploader addr of the curr user
+
+      const db = await req.app.locals.orbitdb.keyvalue("books");
       await db.load();
 
-      // Check if the book exists before attempting to delete
+      // check if book exists
       const book = db.get(bookId);
       if (!book) {
         return res.status(404).send({ message: "Book not found" });
       }
 
-      // Remove the book from the database
+      // 验证上传者地址 - identity check
+      if (
+        book.uploaderAddress.toLowerCase() !== uploaderAddress.toLowerCase()
+      ) {
+        return res.status(403).send({
+          message: "You don't have permission to delete this book",
+        });
+      }
+
+      // delete book
       await db.del(bookId);
       res.status(200).send({ message: "Book deleted successfully" });
     } catch (error) {
       console.error("Error deleting book:", error);
-      res.status500().send("Failed to delete book from OrbitDB");
+      res.status(500).send("Failed to delete book from OrbitDB");
     }
   });
 
