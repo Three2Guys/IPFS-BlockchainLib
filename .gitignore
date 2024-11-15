@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+build/
+dist/
+artifacts/
+cache/
+
+# IDE files
+.DS_Store
+.idea/
+.vscode/
+
+# Local environment
+.env
+.env.local
+
+# IPFS related
+orbitdb/
+kubo/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

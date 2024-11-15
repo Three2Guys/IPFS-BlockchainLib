@@ -1,0 +1,46 @@
+{
+  "name": "my-ipfs-library",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "truffle test",
+    "start": "node start-ipfs.js && react-app-rewired --openssl-legacy-provider start",
+    "build": "react-app-rewired --openssl-legacy-provider build",
+    "deploy": "truffle migrate --network development"
+  },
+  "dependencies": {
+    "@helia/unixfs": "^4.0.0",
+    "@ipld/dag-cbor": "^9.2.2",
+    "cors": "^2.8.5",
+    "customize-cra": "^1.0.0",
+    "ethers": "^5.4.0",
+    "helia": "^5.1.0",
+    "ipfs-core": "^0.18.1",
+    "ipfs-http-client": "^60.0.1",
+    "multiaddr": "^9.0.1",
+    "orbit-db": "^0.29.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "react-app-rewired": "^2.2.1",
+    "truffle": "^5.4.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "type": "module"
+  }
+}
