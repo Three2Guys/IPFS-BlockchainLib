@@ -2,12 +2,6 @@
 node_modules/
 package-lock.json
 
-# Build outputs
-build/
-dist/
-artifacts/
-cache/
-
 # IDE files
 .DS_Store
 .idea/
