@@ -1,6 +1,6 @@
+<img src="Logo.png" alt="Logo" style="width: 300px; height: 100px; display: block; margin: 0 auto;">
 # IPFS-BlockchainLib
 
-<img src="logo.png" alt="Logo" style="width: 300px; height: 100px; display: block; margin: 0 auto;">
 
 ## Installation
 
