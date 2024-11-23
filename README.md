@@ -1,7 +1,6 @@
-<h1>
-  <img src="Logo.png" alt="Logo" style="vertical-align: middle; margin-right: 10px; width: 300px; height: 100px;">
-  IPFS-BlockchainLib
-</h1>
+# IPFS-BlockchainLib
+
+<img src="logo.png" alt="Logo" style="width: 300px; height: 100px; display: block; margin: 0 auto;">
 
 ## Installation
 
