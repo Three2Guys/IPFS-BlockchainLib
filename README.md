@@ -1,6 +1,6 @@
 <h1>
   <img src="Logo.png" alt="Logo" style="vertical-align: middle; margin-right: 10px; width: 270px; height: 90px;">
-  IPFS-BlockchainLib
+  <span style="font-weight: bold; font-style: italic;">IPFS-BlockchainLib</span>
 </h1>
 
 
