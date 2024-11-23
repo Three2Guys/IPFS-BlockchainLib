@@ -131,26 +131,144 @@ const BookUpload = ({ contractAddress }) => {
   };
 
   return (
-    <div>
-      <h2>Upload a Book</h2>
-      <input
-        type="text"
-        placeholder="Enter Book Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Enter Author Name"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      <button onClick={uploadFile} disabled={loading || !provider}>
-        {loading ? "Uploading..." : "Upload"}
-      </button>
+    <div
+      style={{
+        maxWidth: "800px",
+        margin: "0 auto",
+        padding: "2rem",
+        textAlign: "left",
+      }}
+    >
+      <h2
+        style={{
+          fontSize: "24px",
+          fontWeight: "bold",
+          marginBottom: "2rem",
+        }}
+      >
+        Upload a Book
+      </h2>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "1rem",
+            width: "100%",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Enter Book Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            style={{
+              padding: "0.5rem 1rem",
+              border: "1px solid #ccc",
+              borderRadius: "6px",
+              fontSize: "16px",
+              flex: 1,
+            }}
+          />
+
+          <input
+            type="text"
+            placeholder="Enter Author Name"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            style={{
+              padding: "0.5rem 1rem",
+              border: "1px solid #ccc",
+              borderRadius: "6px",
+              fontSize: "16px",
+              flex: 1,
+            }}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              flex: 1,
+              border: "1px solid #ccc",
+              borderRadius: "6px",
+              padding: "0.5rem",
+              backgroundColor: "#fff",
+            }}
+          >
+            <input
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              style={{
+                opacity: 0,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                cursor: "pointer",
+              }}
+            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                pointerEvents: "none",
+              }}
+            >
+              <span
+                style={{
+                  padding: "4px 12px",
+                  backgroundColor: "#f3f4f6",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  fontSize: "16px",
+                  color: "#374151",
+                }}
+              >
+                Choose File
+              </span>
+              <span
+                style={{
+                  color: "#6b7280",
+                  fontSize: "16px",
+                }}
+              >
+                {file ? file.name : "No File Chosen"}
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={uploadFile}
+            disabled={loading || !provider}
+            style={{
+              height: "38px",
+              padding: "0 1.5rem",
+              backgroundColor: "#000",
+              color: "#fff",
+              border: "none",
+              borderRadius: "6px",
+              fontWeight: "600",
+              cursor: loading || !provider ? "not-allowed" : "pointer",
+              opacity: loading || !provider ? 0.5 : 1,
+            }}
+          >
+            {loading ? "Uploading..." : "UPLOAD"}
+          </button>
+        </div>
+      </div>
+
       {cid && (
-        <div>
+        <div style={{ marginTop: "1.5rem" }}>
           <p>File uploaded successfully!</p>
           <p>
             CID:{" "}
@@ -158,6 +276,7 @@ const BookUpload = ({ contractAddress }) => {
               href={`https://ipfs.io/ipfs/${cid}`}
               target="_blank"
               rel="noopener noreferrer"
+              style={{ color: "#2563eb", textDecoration: "none" }}
             >
               {cid}
             </a>
@@ -166,14 +285,18 @@ const BookUpload = ({ contractAddress }) => {
               href={`https://ipfs.io/ipfs/${cid}`}
               target="_blank"
               rel="noopener noreferrer"
+              style={{ color: "#2563eb", textDecoration: "none" }}
             >
-              https://ipfs.io/ipfs/${cid}
+              https://ipfs.io/ipfs/{cid}
             </a>
           </p>
         </div>
       )}
+
       {uploaderAddress && (
-        <p id="uploaderAddress">Uploader: {uploaderAddress}</p> // Display uploader address
+        <p id="uploaderAddress" style={{ marginTop: "1rem" }}>
+          Uploader: {uploaderAddress}
+        </p>
       )}
     </div>
   );
