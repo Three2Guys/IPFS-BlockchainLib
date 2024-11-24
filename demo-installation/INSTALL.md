@@ -125,7 +125,7 @@ This project interacts with the Ethereum blockchain to record transactions and m
     - Create a new wallet or import an existing one.
     - Securely store your seed phrase for account recovery.
 4. **Connect MetaMask to the Project**:
-    - Ensure MetaMask is connected to the correct Ethereum network (e.g., Mainnet, Ropsten).
+    - Ensure MetaMask is connected to the correct (see Anvil network below).
     - Authorize the connection when prompted by the application.
 
 ## OrbitDB Setup
