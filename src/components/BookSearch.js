@@ -204,11 +204,11 @@ const BookSearch = () => {
           marginBottom: "1rem",
         }}
       >
-        <p style={{ margin: "0.5rem 0" }}>Book ID: {book.bookId}</p>
-        <p style={{ margin: "0.5rem 0" }}>Title: {book.title}</p>
-        <p style={{ margin: "0.5rem 0" }}>Author: {book.author}</p>
+        <p style={{ margin: "0.5rem 0" }}><strong>Book ID:</strong> {book.bookId}</p>
+        <p style={{ margin: "0.5rem 0" }}><strong>Title:</strong> {book.title}</p>
+        <p style={{ margin: "0.5rem 0" }}><strong>Author:</strong> {book.author}</p>
         <p style={{ margin: "0.5rem 0", display: "flex", alignItems: "center" }}>
-          Uploader:{" "}
+          <strong>Uploader:</strong> {" "}
           <span
             style={{
               backgroundColor: "#f3f4f6",
@@ -238,7 +238,7 @@ const BookSearch = () => {
           </a>
         </p>
         <p style={{ margin: "0.5rem 0" }}>
-          CID:{" "}
+          <strong>CID:</strong> {" "}
           <span
             style={{
               backgroundColor: "#f3f4f6",

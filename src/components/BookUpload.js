@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import Library from "../artifacts/Library.json"; // Import the ABI
+import Library from "../artifacts/Library.json";
 
 const BookUpload = ({ contractAddress }) => {
   const [file, setFile] = useState(null);
