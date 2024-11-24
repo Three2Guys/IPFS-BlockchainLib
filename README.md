@@ -1,5 +1,5 @@
 <h1>
-  <img src="Logo.png" alt="Logo" style="vertical-align: middle; margin-right: 20px; width: 270px; height: 90px;">
+  <img src="./demo-installation/logo.png" alt="Logo" style="vertical-align: middle; margin-right: 20px; width: 270px; height: 90px;">
   IPFS-BlockchainLib
 </h1>
 
@@ -11,7 +11,7 @@ This project explores the design and implementation of a decentralized storage s
 </p>
 
 ## Installation
-Please refer to [Installation](./demo-installation/INSTALL.md).
+Please refer to [INSTALL.md](./demo-installation/INSTALL.md).
 
 ## Start IPFS Library
 After successful installation, you could start the IPFS by the following instructions.
@@ -38,6 +38,7 @@ Open 4 seperate terminals.
     npm start
     ```
 
+## Demostration
 For demonstration, you could refer to the GIFs in [DEMO.md](./demo-installation/DEMO.md)
 
 We also provide YouTube videos for demonstration. 1. [Start IPFS](https://youtu.be/XQlljNCM0ss) 2. [Add blockchain account to Metamask](https://youtu.be/dD1cTx0mD2A) 3. [Upload files to IPFS Library](https://youtu.be/FcKgLwpYbFk) 4. [Swtich accounts and upload files](https://youtu.be/N9z1TKvR_rY) 5. [Search file and delete file](https://youtu.be/8jHJwvBRdlc) Feel free to check them out!
