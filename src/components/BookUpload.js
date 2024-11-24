@@ -62,6 +62,15 @@ const BookUpload = ({ contractAddress }) => {
       return;
     }
   
+    // Extract MIME type of the file
+    const mimeType = file.type;
+    console.log("File MIME type:", mimeType);
+  
+    if (!mimeType) {
+      alert("Could not determine the file's MIME type. Please try another file.");
+      return;
+    }
+  
     const formData = new FormData();
     formData.append("file", file);
   
@@ -87,10 +96,6 @@ const BookUpload = ({ contractAddress }) => {
       const uploader = await signer.getAddress();
       setUploaderAddress(uploader);
       console.log("Uploader address:", uploader);
-  
-      // Extract MIME type of the file
-      const mimeType = file.type;
-      console.log("File MIME type:", mimeType);
   
       // Step 2: Call the backend to store metadata in OrbitDB
       const addBookResponse = await fetch("http://localhost:3000/add-book", {
