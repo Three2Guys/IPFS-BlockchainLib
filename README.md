@@ -41,9 +41,6 @@ Open 4 seperate terminals.
 ## Demostration
 You could refer to the GIFs in [DEMO.md](./demo-installation/DEMO.md). 
 
-
-markdown
-复制代码
 If the book you want to upload is in `.html` format, you can directly view it by clicking the generated link. For demonstration purposes, we have provided a sample book: [Book0](demo-installation/Book0.html). 
 
 If the book is in a different format, you can download it using the IPFS command:
