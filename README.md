@@ -33,7 +33,7 @@ Open 4 seperate terminals.
     anvil
     ```
 
-4. For the forth terminal, run 
+4. For the fourth terminal, run 
     ```sh
     npm start
     ```
