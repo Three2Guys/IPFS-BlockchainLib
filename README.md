@@ -33,12 +33,12 @@ Open 4 seperate terminals.
     anvil
     ```
 
-4. For the first terminal, run 
+4. For the forth terminal, run 
     ```sh
     npm start
     ```
 
 ## Demostration
-For demonstration, you could refer to the GIFs in [DEMO.md](./demo-installation/DEMO.md)
+You could refer to the GIFs in [DEMO.md](./demo-installation/DEMO.md)
 
 We also provide YouTube videos for demonstration. 1. [Start IPFS](https://youtu.be/XQlljNCM0ss) 2. [Add blockchain account to Metamask](https://youtu.be/dD1cTx0mD2A) 3. [Upload files to IPFS Library](https://youtu.be/FcKgLwpYbFk) 4. [Swtich accounts and upload files](https://youtu.be/N9z1TKvR_rY) 5. [Search file and delete file](https://youtu.be/8jHJwvBRdlc) Feel free to check them out!
