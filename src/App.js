@@ -31,7 +31,7 @@ const App = () => {
         </h1>
         <BookUpload contractAddress={contractAddress} />
         <BookSearch contractAddress={contractAddress} />
-        <BlockchainEvents contractAddress={contractAddress} />
+        {/* <BlockchainEvents contractAddress={contractAddress} /> */}
       </div>
     </ErrorBoundary>
   );
