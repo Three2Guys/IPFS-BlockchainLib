@@ -29,15 +29,16 @@ const BookSearch = () => {
       const query = new URLSearchParams();
       if (title) query.append("title", title);
       if (author) query.append("author", author);
-
+  
       const response = await fetch(
         `http://localhost:3000/search-books?${query.toString()}`
       );
       if (!response.ok) {
         throw new Error("No books found matching the criteria.");
       }
-
+  
       const booksData = await response.json();
+      console.log("Fetched books data with MIME type:", booksData); // Updated log
       setResults(booksData);
     } catch (error) {
       console.error("Error fetching book data:", error);
@@ -45,8 +46,35 @@ const BookSearch = () => {
     }
   };
 
+  const downloadBook = async (cid, fileName, mimeType) => {
+    try {
+      const response = await fetch(`https://ipfs.io/ipfs/${cid}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch the file from IPFS.");
+      }
+  
+      const blob = await response.blob();
+      const extension = mimeType.split("/")[1]; // Extract file extension from MIME type
+      const fullFileName = `${fileName}.${extension}`; // Use the correct file extension
+      const url = window.URL.createObjectURL(blob);
+  
+      // Create a temporary <a> element to trigger the download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fullFileName; // Set the dynamic file name
+      document.body.appendChild(link);
+      link.click();
+  
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading the file:", error);
+      alert("Failed to download the file.");
+    }
+  };
+
   const deleteBook = async (bookId, bookUploaderAddress) => {
-    // 首先检查是否是当前用户上传的书籍
     if (
       bookUploaderAddress.toLowerCase() !== currentUserAddress.toLowerCase()
     ) {
@@ -155,80 +183,146 @@ const BookSearch = () => {
       </div>
 
       {results.length > 0 && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3
+  <div style={{ marginTop: "2rem" }}>
+    <h3
+      style={{
+        fontSize: "20px",
+        fontWeight: "600",
+        marginBottom: "1rem",
+      }}
+    >
+      Search Results:
+    </h3>
+    <ul style={{ listStyle: "none", padding: 0 }}>
+    {results.map((book) => (
+      <li
+        key={book.bookId}
+        style={{
+          padding: "1rem",
+          border: "1px solid #ccc",
+          borderRadius: "6px",
+          marginBottom: "1rem",
+        }}
+      >
+        <p style={{ margin: "0.5rem 0" }}>Book ID: {book.bookId}</p>
+        <p style={{ margin: "0.5rem 0" }}>Title: {book.title}</p>
+        <p style={{ margin: "0.5rem 0" }}>Author: {book.author}</p>
+        <p style={{ margin: "0.5rem 0", display: "flex", alignItems: "center" }}>
+          Uploader:{" "}
+          <span
             style={{
-              fontSize: "20px",
-              fontWeight: "600",
-              marginBottom: "1rem",
+              backgroundColor: "#f3f4f6",
+              padding: "0.5rem",
+              borderRadius: "4px",
+              fontFamily: "monospace",
+              marginLeft: "0.5rem",
             }}
           >
-            Search Results:
-          </h3>
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {results.map((book) => (
-              <li
-                key={book.bookId}
-                style={{
-                  padding: "1rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "6px",
-                  marginBottom: "1rem",
-                }}
-              >
-                <p style={{ margin: "0.5rem 0" }}>Book ID: {book.bookId}</p>
-                <p style={{ margin: "0.5rem 0" }}>Title: {book.title}</p>
-                <p style={{ margin: "0.5rem 0" }}>Author: {book.author}</p>
-                <p style={{ margin: "0.5rem 0" }}>
-                  Uploader: {book.uploaderAddress}
-                </p>
-                <p style={{ margin: "0.5rem 0" }}>
-                  CID:{" "}
-                  <a
-                    href={`https://ipfs.io/ipfs/${book.cid}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: "#2563eb", textDecoration: "none" }}
-                  >
-                    {book.cid}
-                  </a>
-                </p>
-                <button
-                  onClick={() => deleteBook(book.bookId, book.uploaderAddress)}
-                  disabled={
-                    book.uploaderAddress.toLowerCase() !==
-                    currentUserAddress.toLowerCase()
-                  }
-                  style={{
-                    height: "38px",
-                    padding: "0 1.5rem",
-                    backgroundColor: "#000",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "6px",
-                    fontWeight: "600",
-                    cursor:
-                      book.uploaderAddress.toLowerCase() !==
-                      currentUserAddress.toLowerCase()
-                        ? "not-allowed"
-                        : "pointer",
-                    opacity:
-                      book.uploaderAddress.toLowerCase() !==
-                      currentUserAddress.toLowerCase()
-                        ? 0.5
-                        : 1,
-                  }}
-                >
-                  {book.uploaderAddress.toLowerCase() ===
-                  currentUserAddress.toLowerCase()
-                    ? "Delete Book"
-                    : "No Permission to Delete"}
-                </button>
-              </li>
-            ))}
-          </ul>
+            {book.uploaderAddress}
+          </span>
+          <a
+            href={`https://etherscan.io/address/${book.uploaderAddress}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              marginLeft: "0.5rem",
+              fontSize: "20px",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textDecoration: "none",
+              color: "#2563eb",
+            }}
+          >
+            👤
+          </a>
+        </p>
+        <p style={{ margin: "0.5rem 0" }}>
+          CID:{" "}
+          <span
+            style={{
+              backgroundColor: "#f3f4f6",
+              padding: "0.5rem",
+              borderRadius: "4px",
+              fontFamily: "monospace",
+              display: "inline-block",
+              wordBreak: "break-word", // Ensures it wraps correctlyy
+            }}
+          >
+            {book.cid}
+          </span>
+          <button
+            onClick={() => navigator.clipboard.writeText(book.cid)}
+            style={{
+              marginLeft: "1rem",
+              height: "30px",
+              padding: "1 1rem",
+              backgroundColor: "#000",
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              fontWeight: "400",
+              cursor: "pointer",
+            }}
+          >
+            COPY
+          </button>
+        </p>
+        <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+          <button
+            onClick={() => {
+              // Extract file extension from MIME type
+              const extension = book.mimeType.split("/")[1]; 
+              // Pass dynamically generated file name
+              downloadBook(book.cid, book.title, book.mimeType);
+            }}
+            style={{
+              height: "38px",
+              padding: "0 1.5rem",
+              backgroundColor: "#000",
+              color: "#fff",
+              border: "none",
+              borderRadius: "6px",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            DOWNLOAD
+          </button>
+          <button
+            onClick={() => deleteBook(book.bookId, book.uploaderAddress)}
+            disabled={
+              book.uploaderAddress.toLowerCase() !==
+              currentUserAddress.toLowerCase()
+            }
+            style={{
+              height: "38px",
+              padding: "0 1.5rem",
+              backgroundColor: "#ccc",
+              color: "#000",
+              border: "none",
+              borderRadius: "6px",
+              fontWeight: "600",
+              cursor:
+                book.uploaderAddress.toLowerCase() !==
+                currentUserAddress.toLowerCase()
+                  ? "not-allowed"
+                  : "pointer",
+              opacity:
+                book.uploaderAddress.toLowerCase() !==
+                currentUserAddress.toLowerCase()
+                  ? 0.5
+                  : 1,
+            }}
+          >
+            DELETE
+          </button>
         </div>
-      )}
+      </li>
+    ))}
+    </ul>
+  </div>
+)}
 
       {results.length === 0 && (
         <p style={{ marginTop: "1.5rem" }}>No results found.</p>

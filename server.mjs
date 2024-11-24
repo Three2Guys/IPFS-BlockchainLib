@@ -18,35 +18,34 @@ async function startServer() {
   // Define your routes here
   app.post("/add-book", async (req, res) => {
     try {
-      const { title, author, cid, uploaderAddress } = req.body; // Add uploaderAddress
-      if (!title || !author || !cid || !uploaderAddress) {
-        // Check for uploaderAddress
+      const { title, author, cid, uploaderAddress, mimeType } = req.body; // Add mimeType
+      if (!title || !author || !cid || !uploaderAddress || !mimeType) {
+        // Validate all required fields, including mimeType
         return res
           .status(400)
-          .send("Title, author, CID, and uploaderAddress are required.");
+          .send("Title, author, CID, uploaderAddress, and mimeType are required.");
       }
-
-      const db = await app.locals.orbitdb.keyvalue("books"); // created/opened a db named books
-      await db.load(); // load the db
-      const bookId = db.get("bookCount") || 0; // get current num of books
-      await db.put(bookId, { title, author, cid, uploaderAddress }); // Store current books' info into db
-      await db.put("bookCount", bookId + 1); // update num of books
-
-      // 移动到更新bookCount之后的数据库内容检查
+  
+      const db = await app.locals.orbitdb.keyvalue("books"); // Create/open the 'books' database
+      await db.load(); // Load the database
+      const bookId = db.get("bookCount") || 0; // Get the current number of books
+  
+      // Store the book's metadata in the database
+      await db.put(bookId, { title, author, cid, uploaderAddress, mimeType }); // Include mimeType
+      await db.put("bookCount", bookId + 1); // Update the book count
+  
+      // Debugging: Print the database contents after the addition
       console.log("=== Database Content After Addition ===");
       const allData = {};
       for (let i = 0; i < (db.get("bookCount") || 0); i++) {
         allData[i] = db.get(i);
       }
-      console.log(
-        "Current database content:",
-        JSON.stringify(allData, null, 2)
-      );
+      console.log("Current database content:", JSON.stringify(allData, null, 2));
       console.log("Total books count:", db.get("bookCount"));
       console.log("=====================================");
-
+  
       res.status(200).send("Book metadata added successfully.");
-      console.log("Received data:", { title, author, cid, uploaderAddress });
+      console.log("Received data:", { title, author, cid, uploaderAddress, mimeType });
     } catch (error) {
       console.error("Error saving book metadata:", error);
       res.status(500).send("Failed to save book metadata to OrbitDB");
@@ -92,6 +91,7 @@ async function startServer() {
               author: book.author,
               cid: book.cid,
               uploaderAddress: book.uploaderAddress, // Include uploaderAddress in search results
+              mimeType: book.mimeType,
             });
           }
         }

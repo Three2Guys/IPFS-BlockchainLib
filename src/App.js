@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import BookSearch from "./components/BookSearch";
 import BookUpload from "./components/BookUpload";
-import ErrorBoundary from "./components/ErrorBoundary";
 import BlockchainEvents from "./components/BlockchainEvent";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App = () => {
   // Replace with your deployed contract address
-  // const contractAddress = "0x1566481C4b58103AB8f86bFc544FcD034bEa79D4";
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+
+  // States for managing the active tab and dropdown visibility
+  const [activeTab, setActiveTab] = useState("Library");
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  // Function to handle tab changes
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setIsDropdownVisible(false); // Close dropdown when a tab is selected
+  };
+
+  // Function to toggle the dropdown menu
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
 
   return (
     <ErrorBoundary>
@@ -19,6 +33,7 @@ const App = () => {
           textAlign: "center",
         }}
       >
+        {/* Header */}
         <h1
           style={{
             fontSize: "32px",
@@ -29,9 +44,86 @@ const App = () => {
         >
           IPFS Library
         </h1>
-        <BookUpload contractAddress={contractAddress} />
-        <BookSearch contractAddress={contractAddress} />
-        <BlockchainEvents contractAddress={contractAddress} />
+
+        {/* Dropdown Menu */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "1.5rem",
+          }}
+        >
+          <div style={{ position: "relative" }}>
+            <button
+              onClick={toggleDropdown}
+              style={{
+                padding: "0.5rem 1rem",
+                fontSize: "16px",
+                backgroundColor: "#000",
+                color: "#fff",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Menu ▼
+            </button>
+            {isDropdownVisible && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  right: 0,
+                  backgroundColor: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: "6px",
+                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                  zIndex: 10,
+                }}
+              >
+                {/* Dropdown Options */}
+                <div
+                  onClick={() => handleTabChange("Library")}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    cursor: "pointer",
+                    borderBottom: "1px solid #ccc",
+                    backgroundColor:
+                      activeTab === "Library" ? "#f3f4f6" : "transparent",
+                  }}
+                >
+                  Library
+                </div>
+                <div
+                  onClick={() => handleTabChange("Blockchain Events")}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    cursor: "pointer",
+                    backgroundColor:
+                      activeTab === "Blockchain Events"
+                        ? "#f3f4f6"
+                        : "transparent",
+                  }}
+                >
+                  Blockchain Events
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Render Components Based on Active Tab */}
+        {activeTab === "Library" && (
+          <div>
+            <BookUpload contractAddress={contractAddress} />
+            <BookSearch contractAddress={contractAddress} />
+          </div>
+        )}
+        {activeTab === "Blockchain Events" && (
+          <div>
+            <BlockchainEvents contractAddress={contractAddress} />
+          </div>
+        )}
       </div>
     </ErrorBoundary>
   );

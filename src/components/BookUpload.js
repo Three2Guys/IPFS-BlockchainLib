@@ -61,66 +61,77 @@ const BookUpload = ({ contractAddress }) => {
       alert("Please select a file before uploading.");
       return;
     }
-
+  
     const formData = new FormData();
     formData.append("file", file);
-
+  
     try {
       setLoading(true);
-
+  
       // Step 1: Upload the file to IPFS
       const response = await fetch("http://localhost:5001/api/v0/add", {
         method: "POST",
         body: formData,
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to upload file to IPFS");
       }
-
+  
       const data = await response.json();
       const cid = data.Hash;
       console.log("File uploaded to IPFS with CID:", cid);
       setCid(cid);
-
-      // get the uploader address
+  
+      // Get the uploader address
       const uploader = await signer.getAddress();
       setUploaderAddress(uploader);
       console.log("Uploader address:", uploader);
-
+  
+      // Extract MIME type of the file
+      const mimeType = file.type;
+      console.log("File MIME type:", mimeType);
+  
       // Step 2: Call the backend to store metadata in OrbitDB
       const addBookResponse = await fetch("http://localhost:3000/add-book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, author, cid, uploaderAddress: uploader }),
+        body: JSON.stringify({
+          title,
+          author,
+          cid,
+          uploaderAddress: uploader,
+          mimeType, // Include MIME type in the request body
+        }),
       });
-      console.log("Added book to orbitdb with info:", {
+  
+      console.log("Added book to OrbitDB with info:", {
         title,
         author,
         cid,
         uploader,
+        mimeType,
       });
+  
       if (!addBookResponse.ok) {
         throw new Error("Failed to save book metadata to OrbitDB");
       }
-
+  
       // Step 3: Add the book to the blockchain
       if (!contract) {
         throw new Error("Contract not initialized");
       }
-
+  
       console.log("Adding book to blockchain...");
       console.log("Contract address:", contractAddress);
-      console.log("Book details:", { title, author, cid, uploader });
-
+      console.log("Book details:", { title, author, cid, uploader, mimeType });
+  
       const tx = await contract.addBook(title, author, cid);
       console.log("Transaction sent:", tx.hash);
-
+  
       const receipt = await tx.wait();
       console.log("Transaction confirmed:", receipt);
-
-      // document.getElementById("uploaderAddress").innerText = `Uploader: ${uploader}`;
-
+  
       alert("File, metadata, and blockchain record successfully created!");
     } catch (error) {
       console.error("Error in upload process:", error);

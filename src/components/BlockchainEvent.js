@@ -7,6 +7,85 @@ function BlockchainEvents({ contractAddress }) {
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
 
+  // useEffect(() => {
+  //   const initializeContract = async () => {
+  //     if (window.ethereum && contractAddress) {
+  //       try {
+  //         const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+  //         setProvider(newProvider);
+  
+  //         const contract = new ethers.Contract(
+  //           contractAddress,
+  //           Library.abi,
+  //           newProvider
+  //         );
+  //         setContract(contract);
+  
+  //         // Debugging logs
+  //         console.log("Contract Address:", contractAddress);
+  //         console.log("Provider initialized:", newProvider);
+  //         console.log("Contract initialized:", contract);
+  
+  //         // Listen to BookAdded events
+  //         contract.on(
+  //           "BookAdded",
+  //           (bookId, title, author, cid, uploader, event) => {
+  //             console.log("New event detected:", {
+  //               bookId: bookId.toString(),
+  //               title,
+  //               author,
+  //               cid,
+  //               uploader,
+  //               blockNumber: event.blockNumber,
+  //               transactionHash: event.transactionHash,
+  //             });
+  
+  //             setEvents((prevEvents) => [
+  //               {
+  //                 bookId: bookId.toString(),
+  //                 title,
+  //                 author,
+  //                 cid,
+  //                 uploader,
+  //                 blockNumber: event.blockNumber,
+  //                 transactionHash: event.transactionHash,
+  //               },
+  //               ...prevEvents,
+  //             ]);
+  //           }
+  //         );
+  
+  //         // Fetch past events
+  //         const filter = contract.filters.BookAdded();
+  //         const pastEvents = await contract.queryFilter(filter);
+  //         console.log("Past events:", pastEvents);
+  
+  //         const formattedEvents = pastEvents.map((event) => ({
+  //           bookId: event.args.bookId.toString(),
+  //           title: event.args.title,
+  //           author: event.args.author,
+  //           cid: event.args.cid,
+  //           uploader: event.args.uploader,
+  //           blockNumber: event.blockNumber,
+  //           transactionHash: event.transactionHash,
+  //         }));
+  
+  //         setEvents((prevEvents) => [...formattedEvents.reverse(), ...prevEvents]);
+  //       } catch (error) {
+  //         console.error("Error initializing blockchain events:", error);
+  //       }
+  //     }
+  //   };
+  
+  //   initializeContract();
+  
+  //   return () => {
+  //     if (contract) {
+  //       contract.removeAllListeners("BookAdded");
+  //     }
+  //   };
+  // }, [contractAddress]);
+
   useEffect(() => {
     const initializeContract = async () => {
       if (typeof window.ethereum !== "undefined" && contractAddress) {
