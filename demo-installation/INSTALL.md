@@ -43,10 +43,11 @@
 
 ### Download and Install IPFS
 
-1. Open terminal and download IPFS:
+1. Open terminal and download IPFS (for Mac):
     ```sh
     wget https://dist.ipfs.tech/go-ipfs/v0.27.0/go-ipfs_v0.27.0_darwin-arm64.tar.gz
     ```
+    If you are using windows, please access [go-ipfs](https://dist.ipfs.tech/go-ipfs/v0.27.0) to download and extract the version that is compatible with your device.
 
 2. Extract the downloaded file:
     ```sh
