@@ -175,6 +175,6 @@ This project interacts with the Ethereum blockchain to record transactions and m
 
 6. Import an account using one of the private keys from the Anvil terminal output. Click the top button of MetaMask and select "import accounts". Copy an private key from the terminal which runs `anvil`. You could follow the [video instruction](https://youtu.be/dD1cTx0mD2A) to complete the setting.
 
-7. Connect MetaMask to the network and disable real account connections for testing purposes. Click the right top button and unselect all the real accounts to connect to Anvil localhost. Also update the permission of the accounts you imported.
+7. Connect MetaMask to the network and disable real account connections for testing purposes. Click the right top button and unselect all the real accounts connecting to Anvil localhost. Also update the permission of the accounts you imported.
 
 8. Refresh the application and continue uploading files or interacting with the blockchain.
