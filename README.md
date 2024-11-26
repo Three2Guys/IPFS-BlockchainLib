@@ -1,5 +1,5 @@
 <h1>
-  <img src="./demo-installation/Logo.png" alt="Logo" style="vertical-align: middle; margin-right: 20px; width: 300px; height: 90px;">
+  <img src="./demo-installation/Logo.png" alt="Logo" style="vertical-align: middle; margin-right: 20px; width: 270px; height: 70px;">
   IPFS-BlockchainLib
 </h1>
 
