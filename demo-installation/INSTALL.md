@@ -170,9 +170,10 @@ This project interacts with the Ethereum blockchain to record transactions and m
     - **New RPC URL**: `http://127.0.0.1:8545`
     - **Chain ID**: 31337
     - **Currency Symbol**: ETH
+
       This step is done in the MetaMask Network Setting. Click on the left top button of MetaMask and select "add a custom network". Then input the parameters above.
 
-5. Import an account using one of the private keys from the Anvil terminal output. Click the top button of MetaMask and select "import accounts". Copy an private key from the terminal which runs `anvil`. You could follow the [video instruction](https://youtu.be/dD1cTx0mD2A) to complete the setting.
+6. Import an account using one of the private keys from the Anvil terminal output. Click the top button of MetaMask and select "import accounts". Copy an private key from the terminal which runs `anvil`. You could follow the [video instruction](https://youtu.be/dD1cTx0mD2A) to complete the setting.
 
 7. Connect MetaMask to the network and disable real account connections for testing purposes. Click the right top button and unselect all the real accounts to connect to Anvil localhost. Also update the permission of the accounts you imported.
 
