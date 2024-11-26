@@ -159,8 +159,13 @@ This project interacts with the Ethereum blockchain to record transactions and m
     ```sh
     anvil --version
     ```
+    then directly run
+   ```sh
+    anvil
+    ```
+   and it will generate 10 virtual accounts and corresponding private keys.
 
-4. **Connect MetaMask to Anvil**:
+5. **Connect MetaMask to Anvil**:
     - **Network Name**: Anvil Localhost
     - **New RPC URL**: `http://127.0.0.1:8545`
     - **Chain ID**: 31337
