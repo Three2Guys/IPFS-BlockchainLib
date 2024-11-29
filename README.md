@@ -41,8 +41,6 @@ Open 4 seperate terminals.
 ## Demonstration
 
 **Full demonstration video: (https://www.youtube.com/watch?v=s6HwSukH7oA)**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/s6HwSukH7oA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 For demonstration purposes, we have provided a sample book: [Book0](demo-installation/Book0.html). 
 
