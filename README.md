@@ -50,4 +50,6 @@ ipfs get <CID>
 ```
 
 
-We also provide YouTube videos for demonstration. 1. [Start IPFS](https://youtu.be/XQlljNCM0ss) 2. [Add blockchain account to Metamask](https://youtu.be/dD1cTx0mD2A) 3. [Upload files to IPFS Library](https://youtu.be/FcKgLwpYbFk) 4. [Swtich accounts and upload files](https://youtu.be/N9z1TKvR_rY) 5. [Search file and delete file](https://youtu.be/8jHJwvBRdlc) Feel free to check them out!
+We also provide YouTube videos for insturctions. 1. [Start IPFS](https://youtu.be/XQlljNCM0ss) 2. [Add blockchain account to Metamask](https://youtu.be/dD1cTx0mD2A) 3. [Upload files to IPFS Library](https://youtu.be/FcKgLwpYbFk) 4. [Swtich accounts and upload files](https://youtu.be/N9z1TKvR_rY) 5. [Search file and delete file](https://youtu.be/8jHJwvBRdlc) Feel free to check them out!
+
+**Full demonstration video: (https://www.youtube.com/watch?v=s6HwSukH7oA)**
