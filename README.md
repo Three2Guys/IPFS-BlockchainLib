@@ -39,17 +39,10 @@ Open 4 seperate terminals.
     ```
 
 ## Demonstration
-You could refer to the GIFs in [DEMO.md](./demo-installation/DEMO.md). 
-
-If the book you want to upload is in `.html` format, you can directly view it by clicking the generated link. For demonstration purposes, we have provided a sample book: [Book0](demo-installation/Book0.html). 
-
-If the book is in a different format, you can download it using the IPFS command:
-
-```sh
-ipfs get <CID>
-```
-
-
-We also provide YouTube videos for insturctions. 1. [Start IPFS](https://youtu.be/XQlljNCM0ss) 2. [Add blockchain account to Metamask](https://youtu.be/dD1cTx0mD2A) 3. [Upload files to IPFS Library](https://youtu.be/FcKgLwpYbFk) 4. [Swtich accounts and upload files](https://youtu.be/N9z1TKvR_rY) 5. [Search file and delete file](https://youtu.be/8jHJwvBRdlc) Feel free to check them out!
 
 **Full demonstration video: (https://www.youtube.com/watch?v=s6HwSukH7oA)**
+
+For demonstration purposes, we have provided a sample book: [Book0](demo-installation/Book0.html). 
+
+You could also refer to the small piece demo in [DEMO.md](./demo-installation/DEMO.md) which provides instructions for key steps for installation and quickstart.
+

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "truffle test",
-    "start": "node start-ipfs.js && react-app-rewired --openssl-legacy-provider start",
+    "start": "react-app-rewired --openssl-legacy-provider start",
     "build": "react-app-rewired --openssl-legacy-provider build",
     "deploy": "truffle migrate --network development"
   },
